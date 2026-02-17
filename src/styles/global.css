@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@theme {
+    --font-spartan: "League Spartan Variable", sans-serif;
+}
+@theme {
+    --font-geist-mono: "Geist Mono", monospace;
+}
