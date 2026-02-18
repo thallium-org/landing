@@ -3,10 +3,15 @@ import { Image } from "astro:assets";
 import ISR_Logo from "../assets/ISR_logo.png";
 ---
 
-<footer class="border-t border-stone-900">
+<footer class="border-t border-zinc-800">
     <div class="flex justify-center">
         <a href="https://www.inkubatorsr.si/"
-            ><Image src={ISR_Logo} alt="ISR Logo" height="100" /></a
+            ><Image
+                loading="eager"
+                src={ISR_Logo}
+                alt="ISR Logo"
+                height="100"
+            /></a
         >
     </div>
 </footer>

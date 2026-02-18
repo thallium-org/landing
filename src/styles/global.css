@@ -1,7 +1,34 @@
 @import "tailwindcss";
+
 @theme {
     --font-spartan: "League Spartan Variable", sans-serif;
 }
+
 @theme {
     --font-geist-mono: "Geist Mono", monospace;
+}
+
+@theme {
+    --animate-blink: blink 2s step-end infinite;
+    @keyframes blink {
+        0%,
+        50%,
+        100% {
+            opacity: 1;
+        }
+        25%,
+        75% {
+            opacity: 0;
+        }
+    }
+}
+
+.noise:before {
+    mix-blend-mode: soft-light;
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><filter id="noise" x="0" y="0"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" /><feBlend mode="screen" /></filter><rect width="500" height="500" filter="url(%23noise)" opacity="0.5" /></svg>');
 }
