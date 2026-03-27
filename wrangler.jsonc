@@ -1,13 +1,22 @@
 {
-    "name": "thallium-landing",
-    "compatibility_date": "2026-02-17",
-    "assets": {
-        "directory": "./dist",
+  "name": "thallium-landing",
+  "compatibility_date": "2026-02-17",
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+  },
+  "routes": [
+    {
+      "pattern": "thallium.app",
+      "custom_domain": true,
     },
-    "routes": [
-        {
-            "pattern": "thallium.app",
-            "custom_domain": true,
-        },
-    ],
+  ],
+  "env": {
+    "preview": {
+      "name": "thallium-landing-preview",
+      "workers_dev": true,
+      "preview_urls": true,
+    },
+  },
 }

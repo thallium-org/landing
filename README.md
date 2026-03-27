@@ -1,43 +1,51 @@
-# Astro Starter Kit: Minimal
+# Thallium Landing
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Minimal technical company landing page for Thallium, built with Astro 5 and Tailwind 4.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- `astro`
+- `tailwindcss`
+- `@astrojs/sitemap`
+- `@astrolib/seo`
+- Cloudflare Workers static assets via `wrangler.jsonc`
 
-Inside of your Astro project, you'll see the following folders and files:
+## Commands
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+| Command        | Action                                 |
+| -------------- | -------------------------------------- |
+| `pnpm install` | Install dependencies                   |
+| `pnpm dev`     | Start the local Astro dev server       |
+| `pnpm build`   | Build the production site into `dist/` |
+| `pnpm preview` | Preview the built site locally         |
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Deployment
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+GitHub Actions now handles CI and Cloudflare deployments.
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Workflows
 
-## 🧞 Commands
+- `.github/workflows/ci.yml` builds the site on every pull request and on pushes to `main`
+- `.github/workflows/deploy.yml` deploys:
+  - preview builds on pull requests to the `preview` Cloudflare environment
+  - production builds on pushes to `main` or manual dispatches to the `production` environment
 
-All commands are run from the root of the project, from a terminal:
+### Required GitHub secrets
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
 
-## 👀 Want to learn more?
+### Recommended GitHub environment setup
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `preview`: no approval required
+- `production`: required reviewers enabled before deploy
+
+### Wrangler environments
+
+- default config deploys the production site to `thallium.app`
+- `preview` deploys a separate `thallium-landing-preview` worker on `workers.dev`
+
+## Notes
+
+- Production deploys use the `wrangler.jsonc` config in the repo root.
+- The current workflows assume `pnpm-lock.yaml` remains the source of truth for installs.
